@@ -10,6 +10,12 @@
 		AB80569823251C59001C6A50 /* CCNEvaluator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB80568E23251C59001C6A50 /* CCNEvaluator.framework */; };
 		AB80569D23251C59001C6A50 /* CCNEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB80569C23251C59001C6A50 /* CCNEvaluatorTests.swift */; };
 		AB80569F23251C59001C6A50 /* CCNEvaluator.h in Headers */ = {isa = PBXBuildFile; fileRef = AB80569123251C59001C6A50 /* CCNEvaluator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AB8056DE23254432001C6A50 /* CCNEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8056DD23254432001C6A50 /* CCNEvaluator.swift */; };
+		AB8056E2232564EA001C6A50 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8056E1232564EA001C6A50 /* StringExtension.swift */; };
+		AB8056E423264B19001C6A50 /* CCNPrefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8056E323264B19001C6A50 /* CCNPrefix.swift */; };
+		AB8056E623264D50001C6A50 /* CCNNetworkTypeSpecifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8056E523264D50001C6A50 /* CCNNetworkTypeSpecifications.swift */; };
+		ABA3C81B2328E1C9006D2B29 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3C81A2328E1C9006D2B29 /* APIClient.swift */; };
+		ABA3C81D2328EC56006D2B29 /* CreditCardInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3C81C2328EC56006D2B29 /* CreditCardInformation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +35,12 @@
 		AB80569723251C59001C6A50 /* CCNEvaluatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CCNEvaluatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB80569C23251C59001C6A50 /* CCNEvaluatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCNEvaluatorTests.swift; sourceTree = "<group>"; };
 		AB80569E23251C59001C6A50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB8056DD23254432001C6A50 /* CCNEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCNEvaluator.swift; sourceTree = "<group>"; };
+		AB8056E1232564EA001C6A50 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		AB8056E323264B19001C6A50 /* CCNPrefix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCNPrefix.swift; sourceTree = "<group>"; };
+		AB8056E523264D50001C6A50 /* CCNNetworkTypeSpecifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCNNetworkTypeSpecifications.swift; sourceTree = "<group>"; };
+		ABA3C81A2328E1C9006D2B29 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		ABA3C81C2328EC56006D2B29 /* CreditCardInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardInformation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +83,10 @@
 		AB80569023251C59001C6A50 /* CCNEvaluator */ = {
 			isa = PBXGroup;
 			children = (
+				ABA3C81F23290407006D2B29 /* Model */,
+				ABA3C82023290427006D2B29 /* Network */,
+				ABA3C81E23290317006D2B29 /* Extensions */,
+				AB8056DD23254432001C6A50 /* CCNEvaluator.swift */,
 				AB80569123251C59001C6A50 /* CCNEvaluator.h */,
 				AB80569223251C59001C6A50 /* Info.plist */,
 			);
@@ -84,6 +100,32 @@
 				AB80569E23251C59001C6A50 /* Info.plist */,
 			);
 			path = CCNEvaluatorTests;
+			sourceTree = "<group>";
+		};
+		ABA3C81E23290317006D2B29 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AB8056E1232564EA001C6A50 /* StringExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		ABA3C81F23290407006D2B29 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AB8056E323264B19001C6A50 /* CCNPrefix.swift */,
+				AB8056E523264D50001C6A50 /* CCNNetworkTypeSpecifications.swift */,
+				ABA3C81C2328EC56006D2B29 /* CreditCardInformation.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		ABA3C82023290427006D2B29 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				ABA3C81A2328E1C9006D2B29 /* APIClient.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +190,7 @@
 				TargetAttributes = {
 					AB80568D23251C59001C6A50 = {
 						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1030;
 					};
 					AB80569623251C59001C6A50 = {
 						CreatedOnToolsVersion = 10.3;
@@ -194,6 +237,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB8056E423264B19001C6A50 /* CCNPrefix.swift in Sources */,
+				AB8056E623264D50001C6A50 /* CCNNetworkTypeSpecifications.swift in Sources */,
+				AB8056E2232564EA001C6A50 /* StringExtension.swift in Sources */,
+				ABA3C81B2328E1C9006D2B29 /* APIClient.swift in Sources */,
+				AB8056DE23254432001C6A50 /* CCNEvaluator.swift in Sources */,
+				ABA3C81D2328EC56006D2B29 /* CreditCardInformation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +390,7 @@
 		AB8056A323251C59001C6A50 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -358,6 +408,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.niksmitty.CCNEvaluator;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -366,6 +417,7 @@
 		AB8056A423251C59001C6A50 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -391,6 +443,7 @@
 		AB8056A623251C59001C6A50 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 48WSA9YGPA;
 				INFOPLIST_FILE = CCNEvaluatorTests/Info.plist;
@@ -409,6 +462,7 @@
 		AB8056A723251C59001C6A50 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 48WSA9YGPA;
 				INFOPLIST_FILE = CCNEvaluatorTests/Info.plist;
