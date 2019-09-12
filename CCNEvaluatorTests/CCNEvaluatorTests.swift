@@ -281,3 +281,92 @@ extension CCNEvaluatorTests {
     }
     
 }
+
+// MARK: Obtaining additional information about credit card through https://binlist.net API
+extension CCNEvaluatorTests {
+    
+    func testGetInformationReturnsInformationForAPIMatchingNumbers() {
+        let apiMatchingCCNumber = "4929804463622139"
+        
+        let promise = expectation(description: "Completion handler invoked")
+        var informationStr: String?
+        var errorDesc: String?
+        
+        CCNEvaluator.getInformation(creditCardNumber: apiMatchingCCNumber) { informationString, errorDescription in
+            informationStr = informationString
+            errorDesc = errorDescription
+            promise.fulfill()
+        }
+        
+        wait(for: [promise], timeout: 5)
+        
+        XCTAssertNil(errorDesc, "\(apiMatchingCCNumber) should be found, there should be no error.")
+        XCTAssertNotNil(informationStr, "\(apiMatchingCCNumber) should be found, information shouldn't be empty.")
+    }
+    
+    func testGetInformationReturnsSpecificErrorForAPINoMatchingNumbers() {
+        let apiNoMatchingCCNumber = "6210948000000029"
+        
+        let promise = expectation(description: "Completion handler invoked")
+        var informationStr: String?
+        var errorDesc: String?
+        
+        CCNEvaluator.getInformation(creditCardNumber: apiNoMatchingCCNumber) { informationString, errorDescription in
+            informationStr = informationString
+            errorDesc = errorDescription
+            promise.fulfill()
+        }
+        
+        wait(for: [promise], timeout: 5)
+        
+        if let errorDesc = errorDesc {
+            XCTAssertEqual("Error: no information about this card",
+                           errorDesc,
+                           "\(apiNoMatchingCCNumber) shouldn't be found, there should be this error message.")
+        }
+        XCTAssertNil(informationStr,"\(apiNoMatchingCCNumber) shouldn't be found, information should be empty.")
+    }
+    
+    func testGetInformationReturnsInformationForGivenModelStructure() {
+        let ccNumberWithRightStructure = "4929804463622139"
+        
+        let promise = expectation(description: "Completion handler invoked")
+        var informationStr: String?
+        var errorDesc: String?
+        
+        CCNEvaluator.getInformation(creditCardNumber: ccNumberWithRightStructure) { informationString, errorDescription in
+            informationStr = informationString
+            errorDesc = errorDescription
+            promise.fulfill()
+        }
+        
+        wait(for: [promise], timeout: 5)
+        
+        XCTAssertNil(errorDesc, "\(ccNumberWithRightStructure) should be found, there should be no error.")
+        XCTAssertNotNil(informationStr, "\(ccNumberWithRightStructure) should be found, information shouldn't be empty.")
+    }
+    
+    func testGetInformationReturnsSpecificErrorForWrongStructure() {
+        let ccNumberWithWrongStructure = "3538778899859678"
+        
+        let promise = expectation(description: "Completion handler invoked")
+        var informationStr: String?
+        var errorDesc: String?
+        
+        CCNEvaluator.getInformation(creditCardNumber: ccNumberWithWrongStructure) { informationString, errorDescription in
+            informationStr = informationString
+            errorDesc = errorDescription
+            promise.fulfill()
+        }
+        
+        wait(for: [promise], timeout: 5)
+        
+        if let errorDesc = errorDesc {
+            XCTAssertEqual("Error: failed to decode response",
+                           errorDesc,
+                           "\(ccNumberWithWrongStructure) shouldn't be found, there should be this error message.")
+        }
+        XCTAssertNil(informationStr,"\(ccNumberWithWrongStructure) shouldn't be found, information should be empty.")
+    }
+    
+}
