@@ -370,3 +370,104 @@ extension CCNEvaluatorTests {
     }
     
 }
+
+// MARK: Filtering credit card numbers list
+extension CCNEvaluatorTests {
+    
+    func testFilterCreditCardNumbersListUseValidatingOnlyIsCorrect() {
+        let creditCardNumbersList = ["4929804463622139",
+                                     "4929804463622138",
+                                     "6762765696545485",
+                                     "5212132012291762",
+                                     "6210948000000029"]
+        
+        let validList = ["4929804463622139",
+                         "6762765696545485",
+                         "6210948000000029"]
+        
+        let filteredList = CCNEvaluator.filterCreditCardNumbersList(list: creditCardNumbersList, useValidating: true, useConcreteTypes: nil)
+        
+        XCTAssertEqual(validList, filteredList, "filtered list should be contain only valid credit card numbers.")
+    }
+    
+    func testFilterCreditCardNumbersListUseConcreteTypesOnlyIsCorrect() {
+        let creditCardNumbersList = ["4929804463622139",
+                                     "4929804463622138",
+                                     "6762765696545485",
+                                     "5212132012291762",
+                                     "6210948000000029"]
+        
+        let visaOnlyList = ["4929804463622139",
+                            "4929804463622138"]
+        
+        let filteredList = CCNEvaluator.filterCreditCardNumbersList(list: creditCardNumbersList, useValidating: false, useConcreteTypes: ["Visa"])
+        
+        XCTAssertEqual(visaOnlyList, filteredList, "filtered list should be contain only Visa credit card numbers.")
+    }
+    
+    func testFilterCreditCardNumbersListUseValidatingAndConcreteTypesIsCorrect() {
+        let creditCardNumbersList = ["4929804463622139",
+                                     "4929804463622138",
+                                     "6762765696545485",
+                                     "5212132012291762",
+                                     "6210948000000029"]
+        
+        let validVisaOnlyList = ["4929804463622139"]
+        
+        let filteredList = CCNEvaluator.filterCreditCardNumbersList(list: creditCardNumbersList, useValidating: true, useConcreteTypes: ["Visa"])
+        
+        XCTAssertEqual(validVisaOnlyList, filteredList, "filtered list should be contain only valid Visa credit card numbers.")
+    }
+    
+    func testFilterCreditCardNumbersListWithoutValidatingAndConcreteTypesIsCorrect() {
+        let creditCardNumbersList = ["4929804463622139",
+                                     "4929804463622138",
+                                     "6762765696545485",
+                                     "5212132012291762",
+                                     "6210948000000029"]
+        
+        let filteredList = CCNEvaluator.filterCreditCardNumbersList(list: creditCardNumbersList, useValidating: false, useConcreteTypes: nil)
+        
+        XCTAssertEqual(creditCardNumbersList, filteredList, "filtered list should be contain the same numbers as the initial list.")
+    }
+    
+    func testFilterCreditCardNumbersListIsCorrectForConcreteTypesEmptyArray() {
+        let creditCardNumbersList = ["4929804463622139",
+                                     "4929804463622138",
+                                     "6762765696545485",
+                                     "5212132012291762",
+                                     "6210948000000029"]
+        
+        let filteredList = CCNEvaluator.filterCreditCardNumbersList(list: creditCardNumbersList, useValidating: false, useConcreteTypes: [])
+        
+        XCTAssertEqual(creditCardNumbersList, filteredList, "filtered list should be contain the same numbers as the initial list.")
+    }
+    
+    func testFilterCreditCardNumbersListIsCorrectForUnknownNetworkBrandName() {
+        let creditCardNumbersList = ["4929804463622139",
+                                     "4929804463622138",
+                                     "6762765696545485",
+                                     "5212132012291762",
+                                     "6210948000000029"]
+        
+        let filteredList = CCNEvaluator.filterCreditCardNumbersList(list: creditCardNumbersList, useValidating: false, useConcreteTypes: ["Unknown brand"])
+        
+        XCTAssertEqual([], filteredList, "filtered list should be contain nothing.")
+    }
+    
+    func testFilterCreditCardNumbersListIsCorrectForSeveralConcreteTypes() {
+        let creditCardNumbersList = ["4929804463622139",
+                                     "4929804463622138",
+                                     "6762765696545485",
+                                     "5212132012291762",
+                                     "6210948000000029"]
+        
+        let mastercardAndChinaUnionPayOnlyList = ["5212132012291762",
+                                                  "6210948000000029"]
+        
+        let filteredList = CCNEvaluator.filterCreditCardNumbersList(list: creditCardNumbersList, useValidating: false, useConcreteTypes: ["Mastercard", "China Union Pay"])
+        
+        XCTAssertEqual(mastercardAndChinaUnionPayOnlyList, filteredList, "filtered list should be contain only Mastercard and China Union Pay credit card numbers.")
+    }
+    
+}
