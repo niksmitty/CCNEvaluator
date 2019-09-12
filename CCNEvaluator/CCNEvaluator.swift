@@ -233,6 +233,32 @@ public extension CCNEvaluator {
     
 }
 
+// MARK: Filtering credit card numbers list
+public extension CCNEvaluator {
+    
+    /**
+     * @brief Performs filtering credit card numbers list using different flags
+     * @param list Credit card numbers list
+     * @param useValidating Flag for use validating as a criteria for filtering
+     * @param useConcreteTypes Concrete card network types list which will be used
+                                as a criteria for filtering
+                                (pass nil or [] if you don't want to use this criteria)
+     * @return [String] Filtered credit card numbers list
+     **/
+    class func filterCreditCardNumbersList(list: [String], useValidating: Bool, useConcreteTypes: [String]?) -> [String] {
+        var list = list
+        if useValidating {
+            list = list.filter { isCreditCardNumberValid(creditCardNumber: $0) }
+        }
+        if let useConcreteTypes = useConcreteTypes, !useConcreteTypes.isEmpty {
+            let networkTypes = useConcreteTypes.compactMap { CardNetworkType(rawValue: $0) }
+            list = list.filter { CardNetworkType.type(for: $0, checkFromTypes: networkTypes) != .notRecognized }
+        }
+        return list
+    }
+    
+}
+
 private extension CCNEvaluator {
     private enum Const {
         static let zeroString = "0"
