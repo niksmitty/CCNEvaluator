@@ -212,7 +212,7 @@ public extension CCNEvaluator {
                 if let statusCode = response.statusCode {
                     switch statusCode {
                     case .notFound:
-                        completion(informationString, nil)
+                        completion(nil, String(format: Const.errorPatternString, informationString))
                         return
                     }
                 }
@@ -238,7 +238,7 @@ private extension CCNEvaluator {
         static let creditCardNumberMinimumLength = 12
         static let creditCardNumberMaximumLength = 19
         
-        static let informationIsNotFoundString = "No information about this card"
+        static let informationIsNotFoundString = "no information about this card"
         static let errorPatternString = "Error: %@"
         static let failedToDecodeString = "failed to decode response"
     }
