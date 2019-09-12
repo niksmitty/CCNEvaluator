@@ -1,0 +1,11 @@
+framework module CCNEvaluator {
+  umbrella header "CCNEvaluator.h"
+
+  export *
+  module * { export * }
+}
+
+module CCNEvaluator.Swift {
+    header "CCNEvaluator-Swift.h"
+    requires objc
+}
