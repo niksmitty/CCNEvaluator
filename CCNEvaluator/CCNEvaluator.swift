@@ -108,7 +108,7 @@ public extension CCNEvaluator {
     class func getCreditCardNumberNetworkType(creditCardNumber number: String) -> String {
         let number = number.removeAllWhitespacesAndNewlines()
         
-        return CardNetworkType.type(for: number)
+        return CardNetworkType.type(for: number, checkFromTypes: CardNetworkType.allCases).rawValue
     }
     
     // `CardNetworkType` is the credit card network type name,
@@ -158,17 +158,18 @@ public extension CCNEvaluator {
          * @brief Returns result network type which was defined
                     by validating to specifications of different types
          * @param creditCardNumber Credit card number
-         * @return String result network type (included not recognized case)
+         * @param types Credit card network types which necessary to check
+         * @return CardNetworkType result network type (included not recognized case)
          **/
-        static func type(for creditCardNumber: String) -> String {
+        static func type(for creditCardNumber: String, checkFromTypes types: [CardNetworkType]) -> CardNetworkType {
             var resultType: CardNetworkType = .notRecognized
-            for type in CardNetworkType.allCases {
+            for type in types {
                 if validateSpecifications(for: type, and: creditCardNumber) {
                     resultType = type
                     break
                 }
             }
-            return resultType.rawValue
+            return resultType
         }
         
     }
